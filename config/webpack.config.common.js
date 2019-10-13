@@ -3,6 +3,7 @@
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlPlugin             = require('html-webpack-plugin');
+const CopyPlugin             = require('copy-webpack-plugin');
 const helpers                = require('./helpers');
 const isDev                  = process.env.NODE_ENV !== 'production';
 
@@ -48,7 +49,7 @@ module.exports = {
             {
               test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
               parser: { system: true },
-            }
+            },
         ]
     },
 
@@ -63,6 +64,9 @@ module.exports = {
             removeComments: true,
             collapseWhitespace: false
           }
-        })
+        }),
+        new CopyPlugin([
+          { from: 'node_modules/hello-wasm/hello_wasm_bg.wasm', to: '' },
+        ]),
     ]
 };

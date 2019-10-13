@@ -1,7 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-// import * as wasm from 'wasm-game-of-life';
 import { environment } from '../../environments/environment';
-
 
 @Component({
   selector: 'app-root',
@@ -14,8 +12,17 @@ export class AppComponent implements  OnInit {
 
   ngOnInit() {
    
-    // console.log(wasm.get_number());
     console.log(environment.api);
+
+    // var importObject = { imports: { consolelog: arg => console.log(arg) } };
+
+    fetch('./hello_wasm_bg.wasm').then(response =>
+      response.arrayBuffer()
+    ).then(bytes =>
+      WebAssembly.instantiate(bytes, {})
+    ).then(results => {
+      console.log(results.instance.exports.get_number());
+    });
 
   }
   
