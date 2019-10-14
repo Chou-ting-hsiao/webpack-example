@@ -21,35 +21,45 @@ module.exports = {
 
     module: {
         rules: [
-            {
-              test: /\.css$/,
-              use: [
-                "to-string-loader",
-                "css-loader"
-              ]
-            },
-            {
-              test: /\.html$/,
-              loader: 'html-loader',
+          {
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
               options: {
-                ignoreCustomFragments: [/\{\{.*?}}/],
-                root: helpers.root('src'),
-                attrs: ['img:src']
+                presets: ['@babel/preset-env']
+              }
+            }
+          },
+          {
+            test: /\.css$/,
+            use: [
+              "to-string-loader",
+              "css-loader"
+            ]
+          },
+          {
+            test: /\.html$/,
+            loader: 'html-loader',
+            options: {
+              ignoreCustomFragments: [/\{\{.*?}}/],
+              root: helpers.root('src'),
+              attrs: ['img:src']
+            },
+            
+          },
+          {
+              test: /\.(png|svg|jpg|gif)$/,
+              loader:'file-loader',
+              options: {
+                  outputPath: 'asset/img',
               },
-              
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                loader:'file-loader',
-                options: {
-                    outputPath: 'asset/img',
-                },
-            },
-            // This hides some deprecation warnings that Webpack throws
-            {
-              test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
-              parser: { system: true },
-            },
+          },
+          // This hides some deprecation warnings that Webpack throws
+          {
+            test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+            parser: { system: true },
+          },
         ]
     },
 

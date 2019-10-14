@@ -1,5 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { fetchWasm, bufferToString } from '../../utils/WebAssembly';
+
 
 @Component({
   selector: 'app-root',
@@ -7,23 +9,20 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements  OnInit {
+export class AppComponent implements OnInit {
   title = 'webpack-example';
 
   ngOnInit() {
-   
+
     console.log(environment.api);
 
-    // var importObject = { imports: { consolelog: arg => console.log(arg) } };
-
-    fetch('./hello_wasm_bg.wasm').then(response =>
-      response.arrayBuffer()
-    ).then(bytes =>
-      WebAssembly.instantiate(bytes, {})
-    ).then(results => {
-      console.log(results.instance.exports.get_number());
+    const importObject = {/* imports: { consolelog: arg => console.log(arg) }*/ };
+    fetchWasm('./hello_wasm_bg.wasm', importObject).then(m => {
+       console.log(m.add(5, 10)); // 15
+       m.say();
+       console.log(bufferToString(m.memory.buffer));
     });
 
   }
-  
+
 }
