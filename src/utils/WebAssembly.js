@@ -12,13 +12,26 @@ function fetchWasm (url, imports) {
     .then(instance => instance.exports);
 }
 
-function bufferToString (buffer) {
-    const enc = new TextDecoder('utf-8');
+function bufferToString (buffer,offset,len) {
 
-    const arr = new Uint8Array(buffer);
+    const arr = new Uint8Array(buffer, offset);
 
-    return enc.decode(arr);
+    let string ="";
+    let char="";
+
+    for(let i=0;i<=arr.length;i++){
+        console.log(arr[i]);
+
+        if(arr[i]===0){
+            break;
+        }
+        char=String.fromCharCode(arr[i]);
+        string+=char;
+    }
+
+    return string;
 }
+
 
 const _fetchWasm = fetchWasm;
 const _bufferToString = bufferToString;

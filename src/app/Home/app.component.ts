@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
     const importObject = {/* imports: { consolelog: arg => console.log(arg) }*/ };
     fetchWasm('./hello_wasm_bg.wasm', importObject).then(m => {
        console.log(m.add(5, 10)); // 15
-       m.say();
-       console.log(bufferToString(m.memory.buffer));
+       const offet = m.say();
+       console.log(bufferToString(m.memory.buffer, offet, 6));
     });
 
   }
