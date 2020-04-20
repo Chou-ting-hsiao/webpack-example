@@ -32,8 +32,4 @@ function bufferToString (buffer,offset,len) {
     return string;
 }
 
-
-const _fetchWasm = fetchWasm;
-const _bufferToString = bufferToString;
-
-export { _fetchWasm as fetchWasm,_bufferToString as  bufferToString};
+export { fetchWasm, bufferToString};
