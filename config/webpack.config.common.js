@@ -66,7 +66,7 @@ module.exports = {
           }
         }),
         new CopyPlugin([
-          { from: 'node_modules/hello-wasm/hello_wasm_bg.wasm', to: '' },
+          { from: 'node_modules/hello-wasm/', to: 'pkg' },
         ]),
     ]
 };
