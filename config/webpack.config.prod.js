@@ -48,14 +48,19 @@ module.exports = webpackMerge(commonConfig, {
     module: {
         rules: [
             {
-            test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env']
-              }
-            }
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.wasm$/,
+                loaders: ['file-loader'],
+                type: 'javascript/auto',
             },
             {
                 test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,

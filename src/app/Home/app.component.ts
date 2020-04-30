@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     import('hello-wasm').then(module => {
-        module.say();
+      console.log(module);
+      module.say();
     });
 
   }
