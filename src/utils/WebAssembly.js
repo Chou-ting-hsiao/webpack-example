@@ -33,3 +33,13 @@ function bufferToString (buffer,offset,len) {
 }
 
 export { fetchWasm, bufferToString};
+
+// const importObject = {
+//     imports: { consolelog: arg => console.log(arg) }
+// };
+
+// fetchWasm('./pkg/hello_wasm_bg.wasm', importObject).then(m => {
+//     console.log(m.add(5, 10)); // 15
+//     const offet = m.say();
+//     console.log(bufferToString(m.memory.buffer, offet, 6));
+// });

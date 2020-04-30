@@ -65,9 +65,9 @@ module.exports = {
             collapseWhitespace: false
           }
         }),
-        new CopyPlugin([
-          { from: 'node_modules/hello-wasm/hello_wasm_bg.wasm', to: 'pkg' },
-          { from: 'node_modules/hello-wasm/hello_wasm.js', to: 'pkg' },
-        ]),
+        // new CopyPlugin([
+        //   { from: 'node_modules/hello-wasm/hello_wasm_bg.wasm', to: 'pkg' },
+        //   { from: 'node_modules/hello-wasm/hello_wasm.js', to: 'pkg' },
+        // ]),
     ]
 };
